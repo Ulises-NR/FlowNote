@@ -2,9 +2,20 @@
 
 import { signIn, signOut } from "@/auth";
 
-export const signUp = async (values) => {
+type Login = {
+  email: string;
+  password: string;
+};
+
+type SignUp = {
+  username: string;
+  email: string;
+  password: string;
+};
+
+export const signUp = async (values: SignUp) => {
   try {
-    const res = await fetch("/api/auth/signup", {
+    const res = await fetch(process.env.URL + "/api/auth/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -20,12 +31,12 @@ export const signUp = async (values) => {
   }
 };
 
-export const login = async (values) => {
+export const login = async (values: Login) => {
   try {
     const res = await signIn("credentials", {
       email: values.email,
       password: values.password,
-      callbackUrl: "/",
+      redirect: false,
     });
 
     return res;

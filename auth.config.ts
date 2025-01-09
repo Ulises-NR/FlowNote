@@ -11,11 +11,16 @@ export const authConfig = {
 
       const isPrivateRoute = privateRoutes.includes(nextUrl.pathname);
       const isApiRoute = nextUrl.pathname.includes("/api");
+      const isAuthRoute = nextUrl.pathname.includes("/auth");
 
       if (isApiRoute) return;
 
       if (isPrivateRoute && !isLoggedIn) {
         return Response.redirect(new URL("/auth/signin", nextUrl));
+      }
+
+      if (isAuthRoute && isLoggedIn) {
+        return Response.redirect(new URL("/", nextUrl));
       }
 
       return true;

@@ -15,11 +15,11 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { login } from "@/actions/user";
-// import { toast } from "sonner";
-// import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 const SigninPage = () => {
-  // const router = useRouter();
+  const router = useRouter();
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -30,7 +30,13 @@ const SigninPage = () => {
   const { handleSubmit, formState, control } = form;
 
   async function onSubmit(values: z.infer<typeof loginSchema>) {
-    await login(values);
+    try {
+      await login(values);
+      toast.success("Login successful!");
+      router.push("/");
+    } catch (e) {
+      toast.error("Failed to login: " + e.message);
+    }
   }
 
   return (

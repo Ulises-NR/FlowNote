@@ -1,1 +1,1 @@
-export const privateRoutes = ["/notes/"];
+export const privateRoutes = ["/notes", "/notes/form"];

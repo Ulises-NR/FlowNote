@@ -16,7 +16,7 @@ To get a local copy up and running follow these simple example steps.
 
 2. Clone the repo
    ```sh
-   git clone https://github.com/Ulises-Saucedo/FlowNote.git
+   git clone https://github.com/Ulises-NR/FlowNote.git
    ```
 3. Install NPM packages
    ```sh
